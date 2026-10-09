@@ -1,0 +1,48 @@
+
+c)	Write a simple "Hello World" application using Spring
+
+Aim: To create a simple "Hello World" application using Spring Boot.
+
+Procedure:
+1.	Create a Spring Boot project using Spring Initializr
+2.	Add dependency: Spring Web
+3.	Open the project in IDE (VS Code / IntelliJ)
+4.	Create a controller class
+5.	Run the application
+
+Main Class:
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class DemoApplication {
+public static void main(String[] args) {
+SpringApplication.run(DemoApplication.class, args);
+}
+}
+Hello World Controller:
+package com.example.demo;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HelloController {
+@GetMapping("/hello")
+public String hello() {
+return "Hello World using Spring Boot!";
+}
+}
+
+How to Run:
+•	Run DemoApplication.java
+•	Open browser
+
+URL:
+http://localhost:8080/hello
+
+Output:
+Hello World using Spring Boot!
+ 

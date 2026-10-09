@@ -1,0 +1,101 @@
+b)	Configure the project structure and dependencies.
+Aim:To configure the project structure and dependencies of a Spring Boot application created using Spring Initializr.
+
+Project Structure:
+After generating the project, the folder structure will look like:
+demo/
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/com/example/demo/
+ │   │   │   ├── DemoApplication.java
+ │   │   │   ├── controller/
+ │   │   │   │   └── HelloController.java
+ │   │   │   ├── service/
+ │   │   │   ├── repository/
+ │   │   │   └── model/
+ │   │   └── resources/
+ │   │       ├── application.properties
+ │   │       └── static/
+ │   └── test/
+ │       └── java/com/example/demo/
+ ├── pom.xml
+ └── mvnw
+
+Explanation of Structure:
+•	DemoApplication.java → Main class (entry point)
+•	controller/ → Handles HTTP requests
+•	service/ → Business logic layer
+•	repository/ → Database interaction
+•	model/ → Entity classes
+•	application.properties → Configuration file
+•	pom.xml → Dependency management
+Dependencies Configuration (pom.xml):
+Add required dependencies in pom.xml:
+<dependencies>
+
+    <!-- Spring Boot Starter Web -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- Spring Boot Starter Data JPA -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+
+    <!-- H2 Database (for testing) -->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+    <!-- Lombok (optional) -->
+    <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <optional>true</optional>
+    </dependency>
+
+    <!-- Spring Boot Test -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+
+</dependencies>
+
+
+Application Properties Configuration:
+server.port=8080
+
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+
+Sample Controller to Test Configuration:
+@RestController
+public class HelloController {
+
+    @GetMapping("/test")
+    public String test() {
+        return "Project Configured Successfully";
+    }
+}
+
+
+Run the Application:
+Run DemoApplication.java
+
+Output (Browser):
+http://localhost:8080/test
+Output:
+Project Configured Successfully

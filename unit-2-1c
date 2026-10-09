@@ -1,0 +1,73 @@
+c)	Create a web application using Spring MVC 
+Aim: To design and build a functional web application utilizing the Spring Web MVC framework to handle standard RESTful HTTP requests and yield dynamic structured string responses.
+
+Procedure:
+•	Set up a Spring Boot project configured with the Spring Web dependency. 
+•	Structure a specialized controller class utilizing @RestController. 
+•	Define request maps (@GetMapping) to configure custom routing. 
+•	Set up sample parameters using @RequestParam to receive inputs dynamically in the controller.
+•	Deploy the server locally on port 8080 and run verification requests via browser/client utility tool. 
+
+Project Structure:
+spring-mvc-web-app/
+ ├── src/
+ │   ├── main/
+ │   │   ├── java/com/example/demo/
+ │   │   │   ├── SpringMvcApplication.java
+ │   │   │   └── controller/
+ │   │   │       └── PortalController.java
+ │   │   └── resources/
+ │   │       └── application.properties
+ └── pom.xml
+
+Controller Class (PortalController.java):
+package com.example.demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class PortalController {
+
+    // Default entrypoint mapping
+    @GetMapping("/")
+    public String welcome() {
+        return "Welcome to Aditya University's Portal!";
+    }
+
+    // Dynamic greeting mapping using request parameters
+    @GetMapping("/greet")
+    public String greet(@RequestParam(value = "name", defaultValue = "Student") String name) {
+        return "Greetings, " + name + "! Welcome to your Spring Web MVC Dashboard.";
+    }
+}
+
+Main Application Class (SpringMvcApplication.java):
+package com.example.demo;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SpringMvcApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(SpringMvcApplication.class, args);
+    }
+}
+
+Run the Application:
+Run the main class -> SpringMvcApplication.java
+
+Output (Browser):
+URL 1:
+http://localhost:8080/
+
+Output:
+Welcome to Aditya University's Portal!
+URL 2:
+http://localhost:8080/greet?name=Aditya_Learner
+
+Output:
+Greetings, Aditya_Learner! Welcome to your Spring Web MVC Dashboard.

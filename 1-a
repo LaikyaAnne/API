@@ -1,0 +1,61 @@
+Practice 1:  Setting up Spring Framework
+a)	Create and run a Spring Boot application using Spring Initializr.
+Aim: To create and run a Spring Boot application using Spring Initializr.
+
+Procedure:
+1.	Go to https://start.spring.io/
+2.	Select:
+o	Project: Maven
+o	Language: Java
+o	Spring Boot: Latest Version
+3.	Add Dependency:
+o	Spring Web
+4.	Click Generate
+5.	Extract and open in VS Code / IntelliJ
+6.	Run the main application.
+Project Structure:
+src/main/java/com/example/demo
+-- DemoApplication.java
+--HelloController.java
+
+Main Class:
+package com.example.demo;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+@SpringBootApplication
+public class DemoApplication
+{
+public static void main(String[] args)
+{
+SpringApplication.run(DemoApplication.class, args);
+}
+}
+Controller Class:
+package com.example.demo;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class HelloController {
+@GetMapping("/")
+public String home() {
+return "Welcome to Spring Boot Application";
+}
+@GetMapping("/hello")
+public String hello() {
+return "Hello World from Spring Boot!";
+}
+}
+
+Run the Application:
+Run the main class → DemoApplication.java
+
+Output (Browser):
+URL 1:
+http://localhost:8080/
+Output:
+Welcome to Spring Boot Application
+
+URL 2:
+http://localhost:8080/hello
+Output:
+Hello World from Spring Boot!

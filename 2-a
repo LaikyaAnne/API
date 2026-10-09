@@ -1,0 +1,56 @@
+Practice 2:  Spring modules
+a)	Explore Spring Framework modules (e.g., Core, Data Access, Web)
+Aim: To explore and understand the core architectural modules of the Spring Framework (Core Container, Data Access/Integration, and Web) and document their respective roles and configurations.
+
+Conceptual Overview of Key Modules:
+•	Core Container: Consists of the Beans, Core, Context, and SpEL (Spring Expression Language) modules. It provides the fundamental IoC (Inversion of Control) and Dependency Injection features.
+•	Data Access / Integration: Includes JDBC, ORM, OXM, JMS, and the Transaction modules. It simplifies database connectivity, manages transaction states, and reduces boilerplate SQL exception-handling code.
+•	Web (MVC / WebFlux): Contains the Web, Web-Servlet (MVC), Web-Socket, and Web-Portlet modules. It implements the Model-View-Controller design pattern for building responsive, decoupled web applications.
+
+Project Structure:
+This exploration task acts as a foundational mapping of modules to Maven dependencies within our workspace configuration
+spring-modules-exploration/
+ ├── pom.xml
+ └── src/
+     └── main/
+         └── resources/
+             └── application.properties
+
+Dependency Mapping Configuration (pom.xml):	
+To include these modules in our enterprise stack, we configure their corresponding starters within the project's POM file:
+<dependencies>
+    <!-- 1. Core & Web Module Support -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+
+    <!-- 2. Data Access Module Support -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+
+    <!-- 3. H2 Database Engine for local persistence -->
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+
+    <!-- 4. Spring Boot Test Module -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+</dependencies>
+
+Application Properties Configuration (application.properties):
+Configure local test credentials and enable the developer console:
+server.port=8080
+spring.datasource.url=jdbc:h2:mem:moduledb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.h2.console.enabled=true
